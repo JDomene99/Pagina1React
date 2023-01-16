@@ -1,10 +1,11 @@
 
-export default function Card({ pokemon }) {
-  
+export default function Card({ infoPoke }) {
+    
     return (
         <>
         {
-            pokemon.map((poke) => {
+            infoPoke.map((poke) => {
+                
                 return (
                     <>
                         <div >

@@ -1,39 +1,33 @@
 import React, { useEffect, useState } from "react"
 import Card from "../Card/Card";
+import { getPokemon } from "../js/getPokemonByName";
 
 function Main() {
-    const [pokeData,setPokeData] = useState([]);
+    const [pokeData, setPokeData] = useState([]);
+    
 
     const fetchApi = async() =>{
         
-        let response=await fetch('https://pokeapi.co/api/v2/pokemon/');
-        let data = await response.json();
-        getAllPokemon(data.results)
-        // while(data.next != null){
+      let response=await fetch('https://pokeapi.co/api/v2/pokemon/');
+      let data = await response.json();
+      // getAllPokemon(data.results)
+      // while(data.next != null){
+          
+      //     response = await fetch(data.next)
+      //     data =await response.json();
+      //     getAllPokemon(data.results)
             
-        //     response = await fetch(data.next)
-        //     data =await response.json();
-        //     getAllPokemon(data.results)
-              
-        // } 
+      // } 
+
+      const promises = data.results.map(async (pokemon) => {
+        const res = await getPokemon(pokemon.name)
+        setPokeData(currentPoke => currentPoke.concat(res))
+        });
+    
+     
         
     }
 
-    const getAllPokemon = async(poke) =>{
-      
-       poke.map(async(item) => {
-          const response = await fetch(item.url)
-          const json = await response.json();
-          // console.log(json)
-          setPokeData(pokeToSave => {
-            console.log(pokeToSave)
-            pokeToSave = [...pokeToSave,json]
-            return pokeToSave;
-          })
-          // setPokeData(json)
-       })   
-       
-    }
     useEffect(()=>{
         fetchApi();
     },[])
@@ -42,7 +36,8 @@ function Main() {
   return (
     <main>
         <section>
-            <Card pokemon={pokeData} />
+          
+            <Card infoPoke={pokeData} key={pokeData}/>
         </section>
 
 

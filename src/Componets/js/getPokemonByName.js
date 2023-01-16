@@ -1,4 +1,4 @@
-export default async function getPokemon(name){
+export async function getPokemon(name){
     
     let response;
     let data;
@@ -6,10 +6,10 @@ export default async function getPokemon(name){
     try{
         response = await fetch('https://pokeapi.co/api/v2/pokemon/'+name)
         data =await response.json();
-
+        
     }catch{
         data = null;
     }
 
-    return { response, data};
+    return data;
 }
