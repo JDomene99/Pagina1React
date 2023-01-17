@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PaginationPoke = ({ postsPerPage, totalPosts, paginate,  }) => {
+const PaginationPoke = ({ postsPerPage, totalPosts, paginate, setPage  }) => {
   const pageNumbers = [];
   
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil( totalPosts); i++) {
     pageNumbers.push(i);
   }
 
@@ -14,7 +14,7 @@ const PaginationPoke = ({ postsPerPage, totalPosts, paginate,  }) => {
           <li key={number} className='px-5'>
             <a onClick={() => {
               paginate(number)
-              
+              setPage(number-1)
             }} href='!#'>
               {number}
             </a>
