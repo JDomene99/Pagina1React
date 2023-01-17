@@ -7,6 +7,7 @@ export default function Header(){
   const [type, setType] = useState([])
  
   const getPokemon = async () => {
+    
     await fetch("https://pokeapi.co/api/v2/pokemon/"+Math.floor(Math.random() * 500))
       .then(response => {
         return response.json()

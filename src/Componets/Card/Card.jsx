@@ -10,7 +10,7 @@ export default function Card({ infoPoke, loading }) {
                
                 return (
                    
-                        <div className="w-4/12 bg-slate-500">
+                        <div className="w-4/12 bg-slate-500" key={poke.id}>
                             <h2>{poke.id}</h2>
                             <img src={poke.sprites.other.home.front_default} alt="" />
                             <h2>{poke.name}</h2>

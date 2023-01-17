@@ -1,35 +1,29 @@
 import React, { useState } from 'react'
-import { getPokemon } from "../js/getPokemonByName";
 
-export let newList= [];
 
-export default function Filters({ SearchFieldProps }) {
+export default function Filters({ onSearch }) {
 
     const [selectedName, setselectedName] = useState('');
 
     function findPokemon(e){
-        const name = e.target.value
-        setselectedName(name)
+        setselectedName(e.target.value === '' ? null : e.target.value)
     }
   
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        console.log(selectedName)
-        const res = await getPokemon(selectedName)
-        newList = [res]
-        return newList;
+        onSearch(selectedName);
                    
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <input 
         value={selectedName}
         onChange={findPokemon}
         placeholder="Pokemon Name"
         required
       />
-      <button>
+      <button onClick={handleSubmit}>
         buscar
       </button>
     </form>
