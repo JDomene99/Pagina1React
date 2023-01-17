@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function Filters({ onSearch }) {
+export default function SearchFilters({ onSearch }) {
 
     const [selectedName, setselectedName] = useState('');
 
@@ -12,7 +12,7 @@ export default function Filters({ onSearch }) {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         onSearch(selectedName);
-                   
+        setselectedName('')     
     }
 
   return (

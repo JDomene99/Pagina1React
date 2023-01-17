@@ -24,3 +24,12 @@ export const getPokemonData = async (url) => {
         
     } catch (err) {}
 };
+
+export const getPokemonByType = async (type) => {
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/type/${type}/`);
+        const data = await response.json();
+        return data.pokemon;
+        
+    } catch (err) {}
+};

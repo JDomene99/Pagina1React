@@ -61,9 +61,6 @@ async function getData(){
     console.log(data.height/10)
 
     //type
-    data.types.forEach(element => {
-                    console.log(element.type.name)
-    });
     
 
     //stats

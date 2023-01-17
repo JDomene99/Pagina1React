@@ -3,9 +3,9 @@ import Header from "./Componets/Header/Header"
 import Nav  from "./Componets/Nav/Nav";
 import Pokedex from "./Componets/Pokedex/Pokedex";
 import Footer from "./Componets/Footer/Footer";
-import { getPokemonData, getPokemons, searchPokemon } from "./Componets/js/getPokemonByList";
-import Filters from "./Componets/Filters/Filters";
-
+import { getPokemonData, getPokemons, searchPokemon, getPokemonByType } from "./Componets/js/getPokemonByList";
+import SearchFilters from "./Componets/Filters/SearchFilters";
+import TypeFilters from "./Componets/Filters/TypeFilters";
 
 export default function App() {
   //Lista con los pokemon
@@ -14,26 +14,20 @@ export default function App() {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState();
   const [searching, setSearching] = useState(false);
-
-  //pokemon a buscar
-  const [pokeToFind, setPokeFind] = useState('');
-
-  //paginacion
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(9);
+  const [newFiltro, setNewFiltro] = useState(false);
   
 
   const fetchPokemons = async() =>{
 
     setLoading(true);
-    const data = await getPokemons(9, (page) * 9 );
+    const data = await getPokemons(9, (page.selected) * 9 );
     const promises = data.results.map(async (pokemon) => {
       return await getPokemonData(pokemon.url);
     });
     const results = await Promise.all(promises);  
     setPokeData(results)
     setLoading(false);
-
+    setNewFiltro(false)
     //no utilizo data.count porque algunos pokemon no tienen foto
     setTotal(Math.ceil(900/ 9));    
   }
@@ -45,6 +39,7 @@ export default function App() {
   }, [page]);
   
   const onSearch = async (pokemon) => {
+    
     if(pokemon !== null){
       setLoading(true);
       const result = await searchPokemon(pokemon);
@@ -59,29 +54,48 @@ export default function App() {
       fetchPokemons()
     }
     
-  };  
+  };   
 
-  // Get current Pokemon
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = pokeData.slice(indexOfFirstPost, indexOfLastPost);
-  
-  // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const onType = async (pokemon) => {
+    
+    if(pokemon !== null){
+      setLoading(true);
+      setNewFiltro(true)
+      const data = await getPokemonByType(pokemon);
+      if (data) {
+        const promises = data.map(async (poke) => {
+          return await searchPokemon(poke.pokemon.name);
+        });
+        const results = await Promise.all(promises)
+        // setPageFilterType(0)
+        setPokeData(results)
+        setLoading(false);
+        setTotal(Math.ceil(results/9));
+      }
+      
+      
+     
+      
+    }
+    else{
+      fetchPokemons()
+    }
+    
+  }; 
  
   return (
     <>
       <Nav/>
       <Header/>
-      <Filters onSearch={onSearch}/>
-
+      <SearchFilters onSearch={onSearch}/>
+      <TypeFilters onType={onType}/>
       <Pokedex
               loading={loading}
               Allpokemon={pokeData}
-              page={page}
               setPage={setPage}
               total={total}
-              paginate={paginate}
+              setNewFiltro={newFiltro}
+              pageFiltroTypes  = {page}             
             />
       <Footer/>
     </>

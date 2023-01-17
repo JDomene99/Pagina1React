@@ -5,9 +5,9 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Nav() {
   return (
-    <ul className='flex flex-row flex-wrap gap-3 px-60'>
+    <ul className='flex flex-row flex-wrap gap-3 px-60 justify-end py-5  bg-red-300'>
         <li>
-            <a href="https://github.com/JDomene99" target="_blank" className='hover:text-gray-600'>
+            <a href="https://github.com/JDomene99" target="_blank" className=' hover:text-gray-600 '>
                 <GitHubIcon/>
             </a>
         </li>

@@ -49,7 +49,7 @@ export default function Header(){
 
       </div>
       
-      <div className="w-3/6">
+      <div className="w-3/6 flex justify-end">
         <img src={imgPoke}  />
       </div>
       
