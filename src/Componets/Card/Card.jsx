@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react"
 
-export default function Card({ Allpokemon, loading }) {
+export default function Card({ Allpokemon, loading, Allpokemon2 }) {
     if(loading){
         return <h1> loading... </h1>
     }
-    // const listOfTypes = [  'Normal','Fighting','Flying','Poison	','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']
-    // const mapaa = [
-    //     {water : 'blue'},
-    //     {fire : 'red'},
-    //     {grass : 'green'}
-    // ]
-    
+    let newArrow = Allpokemon.length !== 9 ? Allpokemon2 : Allpokemon
+   
     return (
         <>
         {
-            Allpokemon.map( (poke) => {             
+            newArrow.map( (poke) => {             
 
                 return (
 

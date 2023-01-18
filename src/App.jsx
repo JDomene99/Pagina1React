@@ -17,6 +17,11 @@ export default function App() {
   const [newFiltro, setNewFiltro] = useState(false);
   
 
+  const [pokeData2, setPokeData2] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(9);
+
+
   const fetchPokemons = async() =>{
 
     setLoading(true);
@@ -60,6 +65,7 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
+      setPokeData([])
       setNewFiltro(true)
       const data = await getPokemonByType(pokemon);
       if (data) {
@@ -67,21 +73,27 @@ export default function App() {
           return await searchPokemon(poke.pokemon.name);
         });
         const results = await Promise.all(promises)
-        // setPageFilterType(0)
-        setPokeData(results)
+        setPokeData2(results)
         setLoading(false);
         setTotal(Math.ceil(results/9));
+        console.log(total)
       }
-      
-      
-     
-      
     }
     else{
       fetchPokemons()
     }
     
   }; 
+
+
+   // Get current posts
+   const indexOfLastPost = currentPage * postsPerPage;
+   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+   const currentPosts = pokeData2.slice(indexOfFirstPost, indexOfLastPost);
+ 
+   // Change page
+   const paginate = pageNumber => setCurrentPage(pageNumber);
+ 
  
   return (
     <>
@@ -95,7 +107,10 @@ export default function App() {
               setPage={setPage}
               total={total}
               setNewFiltro={newFiltro}
-              pageFiltroTypes  = {page}             
+              pageFiltroTypes  = {page} 
+              Allpokemon2={currentPosts}
+              postsPerPage={postsPerPage}
+              paginate={paginate}
             />
       <Footer/>
     </>

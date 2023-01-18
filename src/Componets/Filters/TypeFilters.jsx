@@ -1,39 +1,50 @@
 import React, {useEffect, useState } from 'react'
 import Select from 'react-select'
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function TypeFilters( {onType}) {
   const [listOfTypes, setPokeData] = useState([  'Normal','Fighting','Flying','Poison	','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']);
-    // const listOfTypes = [  'Normal','Fighting','Flying','Poison	','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']
-    // const options = [
-    //     { value: 'grass', label: 'grass' },
-    //     { value: 'Fighting', label: 'Fighting' },
-    //     { value: 'rock', label: 'rock' }
-    //   ]
-
-
-    function findPokemon(e){
-        onType((e.target.value).toLowerCase());
-       
-    }
+   
+  function findPokemon(e){
+      onType((e.target.value).toLowerCase());
+      
+  }
   
+  const slideLeft = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+
+  const slideRight = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
     
-
   return (
-        
-        <div>
-           
-           { listOfTypes.map( (button,i) => {
-              return (
-                      <button key={i}  value={button} onClick={findPokemon}> {button}  </button>
-                    )
-            })
-           }
 
-          {/* <Select options={options} onChange={findPokemon}  /> */}
-
+    <>
+      <div className='relative flex items-center'>
+        <ArrowBackIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={40} />
+        <div
+          id='slider'
+          className='w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide'
+        >
+          {listOfTypes.map((button,i) => (
+            
+            <button className='w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300' key={i}  value={button} onClick={findPokemon}> {button}  </button>
+                    
+            
+          ))}
         </div>
+        <ArrowForwardIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideRight} size={40} />
+      </div>
+
+      {/* <Select options={options} onChange={findPokemon}  /> */}
+    </>
+
   )
+
 }
 
 export default TypeFilters

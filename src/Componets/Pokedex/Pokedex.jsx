@@ -7,8 +7,9 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './style.css'
 
-function Pokedex({ Allpokemon,  setPage, total, loading, setNewFiltro,pageFiltroTypes  }) { 
- 
+        
+function Pokedex({ Allpokemon,  setPage, total, loading, setNewFiltro, pageFiltroTypes, Allpokemon2, postsPerPage, paginate}) { 
+  
   const lastPage = () => {
     const nextPage = Math.max(pageFiltroTypes - 1, 0);
     setPage(nextPage);
@@ -19,22 +20,28 @@ function Pokedex({ Allpokemon,  setPage, total, loading, setNewFiltro,pageFiltro
     setPage(nextPage);
   };
 
+  
+
   return (
     <section className="flex flex-row flex-wrap mx-auto px-60 justify-between" >
              
       <Card 
         Allpokemon={Allpokemon} 
         loading={loading}
+        Allpokemon2={Allpokemon2}
       />
+
       {
         setNewFiltro ? 
         <PaginationFilter
-          onLeftClick = {lastPage}
-          onRightClick ={nextPage}
-          page = {pageFiltroTypes}
+          // onLeftClick = {lastPage}
+          // onRightClick ={nextPage}
+          // page = {paginate}
+          postsPerPage={postsPerPage}
+          paginate={paginate}
           totalPages = {total}
         />   
-        
+       
         :
         <ReactPaginate
         activeClassName={'item active '}
