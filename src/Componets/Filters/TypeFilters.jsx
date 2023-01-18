@@ -1,14 +1,12 @@
-import React, {useEffect, useState } from 'react'
-import Select from 'react-select'
+import React, { useState } from 'react'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-function TypeFilters( {onType}) {
-  const [listOfTypes, setPokeData] = useState([  'Normal','Fighting','Flying','Poison	','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']);
+export default function TypeFilters( {onType}) {
+  const [listOfTypes, setPokeData] = useState([ 'Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']);
    
   function findPokemon(e){
-      onType((e.target.value).toLowerCase());
-      
+      onType((e.target.value).toLowerCase());  
   }
   
   const slideLeft = () => {
@@ -22,7 +20,6 @@ function TypeFilters( {onType}) {
   };
     
   return (
-
     <>
       <div className='relative flex items-center'>
         <ArrowBackIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={40} />
@@ -34,17 +31,12 @@ function TypeFilters( {onType}) {
             
             <button className='w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300' key={i}  value={button} onClick={findPokemon}> {button}  </button>
                     
-            
           ))}
         </div>
         <ArrowForwardIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideRight} size={40} />
       </div>
-
-      {/* <Select options={options} onChange={findPokemon}  /> */}
     </>
 
   )
 
 }
-
-export default TypeFilters

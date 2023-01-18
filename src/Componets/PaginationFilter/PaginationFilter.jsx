@@ -1,49 +1,17 @@
 import React from "react";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const PaginationFilter = (props) => {
-  const { onLeftClick, onRightClick, page, totalPages } = props;
 
+const PaginationFilter = ({ nPages, currentPage, prevPage,nextPage }) => {
+   
   return (
-    <div >
-      <button onClick={onLeftClick}>
-        <div className="icon">
-          <ArrowUpwardIcon />
-        </div>
-      </button>
-      <div>
-        {page} de {totalPages}
-      </div>
-      <button onClick={onRightClick}>
-        <div className="icon">
-          Mostrar mas pokemon
-        </div>
-      </button>
-    </div>
+    <nav>
+        <button onClick={prevPage}><ArrowBackIosNewIcon/></button>
+        <span>{currentPage} de {nPages}</span> 
+        <button onClick={nextPage}><ArrowForwardIosIcon/></button>
+    </nav>
   );
 };
-
-// const PaginationFilter = ({ postsPerPage, totalPosts, paginate }) => {
-//     const pageNumbers = [];
-  
-//     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-//       pageNumbers.push(i);
-//     }
-  
-//     return (
-//       <nav>
-//         <ul className='pagination'>
-//           {pageNumbers.map(number => (
-//             <li key={number} className='page-item'>
-//               <a onClick={() => paginate(number)} href='!#' className='page-link'>
-//                 {number}
-//               </a>
-//             </li>
-//           ))}
-//         </ul>
-//       </nav>
-//     );
-//   };
 
 export default PaginationFilter;

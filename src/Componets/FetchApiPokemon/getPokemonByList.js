@@ -33,3 +33,11 @@ export const getPokemonByType = async (type) => {
         
     } catch (err) {}
 };
+export const getPokemonByRegion = async (region) => {
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/generation/${region}`);
+        const data = await response.json();
+        return data.pokemon_species;
+        
+    } catch (err) {}
+};

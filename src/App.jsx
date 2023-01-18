@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import Header from "./Componets/Header/Header"
 import Nav  from "./Componets/Nav/Nav";
+import FiltersNav from './Componets/Filters/FiltersNav'
 import Pokedex from "./Componets/Pokedex/Pokedex";
 import Footer from "./Componets/Footer/Footer";
-import { getPokemonData, getPokemons, searchPokemon, getPokemonByType } from "./Componets/js/getPokemonByList";
-import SearchFilters from "./Componets/Filters/SearchFilters";
-import TypeFilters from "./Componets/Filters/TypeFilters";
+import { getPokemonData, getPokemons, searchPokemon, getPokemonByType, getPokemonByRegion } from "./Componets/FetchApiPokemon/getPokemonByList";
+
 
 export default function App() {
   //Lista con los pokemon
@@ -18,9 +18,6 @@ export default function App() {
   
 
   const [pokeData2, setPokeData2] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(9);
-
 
   const fetchPokemons = async() =>{
 
@@ -51,6 +48,7 @@ export default function App() {
       if (result) {
         setPokeData([result]);
         setPage(0);
+        setTotal(0);
       }
       setLoading(false);
       
@@ -76,7 +74,7 @@ export default function App() {
         setPokeData2(results)
         setLoading(false);
         setTotal(Math.ceil(results/9));
-        console.log(total)
+        
       }
     }
     else{
@@ -85,33 +83,47 @@ export default function App() {
     
   }; 
 
-
-   // Get current posts
-   const indexOfLastPost = currentPage * postsPerPage;
-   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-   const currentPosts = pokeData2.slice(indexOfFirstPost, indexOfLastPost);
- 
-   // Change page
-   const paginate = pageNumber => setCurrentPage(pageNumber);
- 
+  const NumberGeneracion = async (pokemon) => {
+    
+    if(pokemon !== null){
+      setLoading(true);
+      setPokeData([])
+      setNewFiltro(true)
+      const data = await getPokemonByRegion(pokemon);
+      if (data) {
+        const promises = data.map(async (poke) => {
+          return await searchPokemon(poke.name);
+        });
+        const results = await Promise.all(promises)
+        setPokeData2(results)
+        setLoading(false);
+        setTotal(Math.ceil(results/9));
+      }
+    }
+    else{
+      fetchPokemons()
+    }
+    
+  }; 
  
   return (
     <>
       <Nav/>
       <Header/>
-      <SearchFilters onSearch={onSearch}/>
-      <TypeFilters onType={onType}/>
+      <FiltersNav
+        onSearch={onSearch}
+        onType={onType}
+        NumberGeneracion={NumberGeneracion}
+      />
       <Pokedex
               loading={loading}
               Allpokemon={pokeData}
               setPage={setPage}
               total={total}
               setNewFiltro={newFiltro}
-              pageFiltroTypes  = {page} 
-              Allpokemon2={currentPosts}
-              postsPerPage={postsPerPage}
-              paginate={paginate}
-            />
+              Allpokemon2={pokeData2}
+             
+      />
       <Footer/>
     </>
     

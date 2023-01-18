@@ -8,40 +8,47 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './style.css'
 
         
-function Pokedex({ Allpokemon,  setPage, total, loading, setNewFiltro, pageFiltroTypes, Allpokemon2, postsPerPage, paginate}) { 
+function Pokedex({ Allpokemon,  setPage, total, loading, setNewFiltro, Allpokemon2}) { 
   
-  const lastPage = () => {
-    const nextPage = Math.max(pageFiltroTypes - 1, 0);
-    setPage(nextPage);
-  };
+  console.log(Allpokemon)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonPerPage] = useState(9);
 
-  const nextPage = () => {
-    const nextPage = Math.min(pageFiltroTypes + 1, total - 1);
-    setPage(nextPage);
-  };
-
+   // Get current pokemon
+   const indexOfLastRecord = currentPage * pokemonPerPage;
+   const indexOfFirstRecord = indexOfLastRecord - pokemonPerPage;
+   const currentRecord = Allpokemon2.slice(indexOfFirstRecord, indexOfLastRecord);
   
+   const nPages = Math.ceil(Allpokemon2.length / pokemonPerPage)
 
+   const nextPage = () => {
+    if(currentPage !== nPages) 
+        setCurrentPage(currentPage + 1)
+    }
+    const prevPage = () => {
+        if(currentPage !== 1) 
+            setCurrentPage(currentPage - 1)
+    }
+
+    
   return (
     <section className="flex flex-row flex-wrap mx-auto px-60 justify-between" >
              
       <Card 
         Allpokemon={Allpokemon} 
         loading={loading}
-        Allpokemon2={Allpokemon2}
+        Allpokemon2={currentRecord}
       />
 
       {
         setNewFiltro ? 
         <PaginationFilter
-          // onLeftClick = {lastPage}
-          // onRightClick ={nextPage}
-          // page = {paginate}
-          postsPerPage={postsPerPage}
-          paginate={paginate}
-          totalPages = {total}
-        />   
-       
+          nextPage={nextPage}
+          prevPage={prevPage}
+          nPages = { nPages }
+          currentPage = { currentPage } 
+        /> 
+         
         :
         <ReactPaginate
         activeClassName={'item active '}

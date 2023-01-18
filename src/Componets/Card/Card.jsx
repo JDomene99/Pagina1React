@@ -4,12 +4,16 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
     if(loading){
         return <h1> loading... </h1>
     }
-    let newArrow = Allpokemon.length !== 9 ? Allpokemon2 : Allpokemon
+    console.log(Allpokemon)
+    console.log(Allpokemon2)
+
+    
+    let RecordsPokemon = Allpokemon.length === 9 || Allpokemon.length === 1 ? Allpokemon : Allpokemon2
    
     return (
         <>
         {
-            newArrow.map( (poke) => {             
+            RecordsPokemon.map( (poke) => {             
 
                 return (
 
