@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button';
 
 export default function SearchFilters({ onSearch }) {
 
@@ -16,16 +17,19 @@ export default function SearchFilters({ onSearch }) {
     }
 
   return (
-    <form>
-      <input 
-        value={selectedName}
-        onChange={findPokemon}
-        placeholder="Pokemon Name"
-        required
+    <form className='sm:w-6/12 md:w-6/12 lg:w-6/12 2xl:w-4/12'>
+      <TextField  
+      label="Pokemon Name" 
+      value={selectedName}
+      onChange={findPokemon}
       />
-      <button onClick={handleSubmit}>
-        buscar
+      
+      <button 
+        className='bg-red-400 p-4 hover:scale-105 ease-in-out duration-300'
+        onClick={handleSubmit}>
+        🔎
       </button>
+      
     </form>
   )
 }

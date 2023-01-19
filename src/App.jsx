@@ -27,7 +27,8 @@ export default function App() {
       return await getPokemonData(pokemon.url);
     });
     const results = await Promise.all(promises);  
-    setPokeData(results)
+    setPokeData(results)  
+
     setLoading(false);
     setNewFiltro(false)
     //no utilizo data.count porque algunos pokemon no tienen foto

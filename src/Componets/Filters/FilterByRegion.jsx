@@ -32,10 +32,12 @@ export default function RegionFilter( {NumberGeneracion}) {
   return (
     <>
         <Select 
+            className='lg:w-2/12 md:w-4/12 2xl:w-3/12'
             placeholder={'Elige una región'}
             options={listOfRegion}
             onChange={ (e) => NumberGeneracion(e.value)} 
         />
+        
     </>
   )
 
