@@ -6,7 +6,14 @@ export const searchPokemon = async (pokemon) => {
         return ObjPokemon(data);
     } catch (err) {}
 };
-
+export const searchRandomPokemon = async () => {
+    try {
+        let url = `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 500)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return ObjPokemon(data);
+    } catch (err) {}
+};
 export const getPokemons = async (limit = 9, offset = 0) => {
     try {
         let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;

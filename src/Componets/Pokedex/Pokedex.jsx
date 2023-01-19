@@ -10,6 +10,8 @@ import './style.css'
         
 function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon2}) { 
   
+ 
+
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage] = useState(9);
 
@@ -19,7 +21,7 @@ function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon
    const currentRecord = Allpokemon2.slice(indexOfFirstRecord, indexOfLastRecord);
   
    const nPages = Math.ceil(Allpokemon2.length / pokemonPerPage)
-
+  
    const nextPage = () => {
     if(currentPage !== nPages) 
         setCurrentPage(currentPage + 1)
@@ -28,17 +30,18 @@ function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon
         if(currentPage !== 1) 
             setCurrentPage(currentPage - 1)
     }
-
+    
+    
 
   return (
-    <section className="flex flex-row flex-wrap sm:px-10 md:px-20 lg:px-28 justify-between gap-5 mt-24 " >
+    <section className="flex flex-row flex-wrap sm:px-10 md:px-20 lg:px-28 justify-between gap-5 pt-24 bg-[#a2d9ff]" >
 
       <Card 
         Allpokemon={Allpokemon}
         loading={loading}
         Allpokemon2={currentRecord}
       />
-
+      <div className="w-12/12 mx-auto my-5">
       {
         setNewFiltro ? 
         <PaginationFilter
@@ -65,6 +68,8 @@ function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon
       /> 
        
       }
+      </div>
+      
       
        
     </section>

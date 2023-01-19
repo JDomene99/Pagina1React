@@ -8,6 +8,7 @@ import {pokemonTypes} from '../TypesPoke/TypesPoke'
 export default function TypeFilters( {onType}) { 
    
   function findPokemon(e){
+    console.log(e.target.value)
     onType((e.target.value).toLowerCase());  
   }
   
@@ -24,7 +25,7 @@ export default function TypeFilters( {onType}) {
   
   return (
     <>
-      <div className='relative flex items-center lg:w-4/12 md:w-6/12 my-auto '>
+      <div className='relative flex items-center lg:w-4/12 md:w-6/12 mt-2 sm:mb-6 sm:w-11/12 sm:mx-auto '>
 
         <ArrowBackIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={70} />
 
@@ -45,15 +46,6 @@ export default function TypeFilters( {onType}) {
                   </div>
                 
               </button>
-
-              // <button
-              // className=" text-black w-1/12"
-              // onClick={() => setShowModal(false)}
-              // >
-              // <span className="text-3xl">
-              //   ✖️
-              // </span>
-              // </button>
           ))}
         </div>
 

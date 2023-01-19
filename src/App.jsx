@@ -45,6 +45,7 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
+      setNewFiltro(true)
       const result = await searchPokemon(pokemon);
       if (result) {
         setPokeData([result]);
@@ -64,6 +65,8 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
+      setPage(0)
+      setPokeData2([])
       setPokeData([])
       setNewFiltro(true)
       const data = await getPokemonByType(pokemon);
@@ -88,7 +91,9 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
+      setPage(0)
       setPokeData([])
+      setPokeData2([])
       setNewFiltro(true)
       const data = await getPokemonByRegion(pokemon);
       if (data) {
@@ -106,6 +111,13 @@ export default function App() {
     }
     
   }; 
+
+  const resetFilter = async (reset) =>{
+    if(reset !== null){
+      fetchPokemons()
+      setPage(0)
+    }
+  }
  
   return (
     <>
@@ -115,6 +127,7 @@ export default function App() {
         onSearch={onSearch}
         onType={onType}
         NumberGeneracion={NumberGeneracion}
+        resetFilter = {resetFilter}
       />
       <Pokedex
               loading={loading}
@@ -122,8 +135,7 @@ export default function App() {
               setPage={setPage}
               total={total}
               setNewFiltro={newFiltro}
-              Allpokemon2={pokeData2}
-             
+              Allpokemon2={pokeData2}             
       />
       <Footer/>
     </>

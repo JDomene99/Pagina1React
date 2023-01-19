@@ -1,11 +1,22 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AiFillHome } from "react-icons/ai";
+import React, { useState } from 'react'
+import Button from '@mui/material/Button';
 
-export default function Home() {
+export default function Home( { resetFilter } ) {
+  
+  const [emptyFilter, setemptyFilter] = useState([]);
+
+  function resetFilterApp(){
+    setemptyFilter([])
+    resetFilter(emptyFilter)
+  }
+
+
   return ( 
     <>
-      <AiFillHome/>
+       <Button 
+       onClick={resetFilterApp}
+       variant="contained">🛖
+       </Button>
     </>
     
   )
