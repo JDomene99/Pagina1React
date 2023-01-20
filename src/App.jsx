@@ -28,7 +28,6 @@ export default function App() {
     });
     const results = await Promise.all(promises);  
     setPokeData(results)  
-
     setLoading(false);
     setNewFiltro(false)
     //no utilizo data.count porque algunos pokemon no tienen foto
@@ -135,7 +134,7 @@ export default function App() {
               setPage={setPage}
               total={total}
               setNewFiltro={newFiltro}
-              Allpokemon2={pokeData2}             
+              Allpokemon2={pokeData2}        
       />
       <Footer/>
     </>

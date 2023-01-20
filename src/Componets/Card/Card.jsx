@@ -24,20 +24,18 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
 
   return (
     <>
-      {RecordsPokemon.map((poke) => {
+      {RecordsPokemon.map((poke,i) => {
         return (
           <div
             style={{ background: poke.type[0].color + " 0.5)" }}
             className={`lg:w-[30%] ${
-              poke.name == RecordsPokemon[0].name
-                ? "md:w-[100%]"
-                : "md:w-[45%]" || poke.name == RecordsPokemon[8].name
+                i == 8
                 ? "md:w-[100%]"
                 : "md:w-[45%]"
             } sm:w-[100%] text-center flex flex-col flex-wrap justify-center rounded-2xl`}
             key={poke.id}
           >
-            {console.log(poke.name)}
+            
             <img
               className="hover:scale-105 ease-in-out duration-300 w-8/12 mx-auto"
               src={poke.img}
