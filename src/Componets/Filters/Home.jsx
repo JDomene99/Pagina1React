@@ -12,12 +12,15 @@ export default function Home( { resetFilter } ) {
 
 
   return ( 
-    <>
+    <form className="xs:mx-auto xs:w-1/12">
+    
        <Button 
        onClick={resetFilterApp}
-       variant="contained">🛖
+       variant="contained"
+       >🛖
+
        </Button>
-    </>
+    </form>
     
   )
 }

@@ -31,8 +31,8 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
             className={`lg:w-[30%] ${
                 i == 8
                 ? "md:w-[100%]"
-                : "md:w-[45%]"
-            } sm:w-[100%] text-center flex flex-col flex-wrap justify-center rounded-2xl`}
+                : "md:w-[43%]"
+            } sm:w-[100%] xs:w-[100%] xs:mx-5 sm:mx-auto text-center flex flex-col flex-wrap justify-center rounded-2xl`}
             key={poke.id}
           >
             

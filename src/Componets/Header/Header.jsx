@@ -20,8 +20,9 @@ export default function Header() {
 
   return (
     <header>
-      <div className="flex sm:flex-col lg:flex-row sm:justify-center lg:justify-between align-middle sm:px-5 md:px-10 lg:px-28 bg-opacity-10">
-        <div className="flex flex-col justify-center align-middle sm:w-6/6 lg:w-3/6 sm:mx-auto text-center">
+      <div className="flex sm:flex-col lg:flex-row sm:justify-center lg:justify-between align-middle xs:flex-col xs:px-5 sm:px-5 md:px-10 lg:px-28 bg-opacity-10">
+
+        <div className="flex flex-col justify-center align-middle xs:w-12/12 sm:w-6/6 lg:w-3/6 sm:mx-auto text-center">
           <h3 className="text-3xl pb-1">#{pokemon.id}</h3>
 
           <h1 className="text-6xl pb-3">{pokemon.name}</h1>
@@ -49,7 +50,7 @@ export default function Header() {
           </p>
         </div>
 
-        <div className="sm:w-6/6 lg:w-3/6 sm:mx-auto ">
+        <div className="xs:w-12/12 sm:w-6/6 lg:w-3/6 sm:mx-auto ">
           <img className="sm:mx-auto" src={imgPoke} />
         </div>
       </div>

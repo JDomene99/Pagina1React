@@ -4,7 +4,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Footer() {
   return (
-    <footer className='flex flex-row flex-wrap mx-auto justify-between sm:px-10 md:px-20 lg:px-28  py-10 bg-[#a2d9ff]'>
+    <footer className='flex flex-row flex-wrap mx-auto justify-between xs:px-6 sm:px-10 md:px-20 lg:px-28  py-10 bg-[#a2d9ff]'>
       
       <div className='border-t-2 w-full pt-6'>
 

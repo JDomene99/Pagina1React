@@ -25,7 +25,7 @@ export default function TypeFilters( {onType}) {
   
   return (
     <>
-      <div className='relative flex items-center lg:w-4/12 md:w-6/12 mt-2 sm:mb-6 sm:w-11/12 sm:mx-auto '>
+      <div className='relative flex items-center xs:w-10/12 lg:w-4/12 md:w-6/12 mt-2 sm:mb-6 sm:w-11/12 sm:mx-auto xs:mx-auto '>
 
         <ArrowBackIosIcon className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={70} />
 

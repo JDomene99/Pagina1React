@@ -28,10 +28,10 @@ function Modal({ handleClick, setShowModal, closeModal }) {
 
   const ProgressBar = ({ progressPercentage }) => {
     return (
-      <div className="h-1 w-8/12 bg-gray-300 my-auto pb-2 rounded-md">
+      <div className="h-1 w-11/12 max-w-[250px] bg-gray-300 my-auto pb-2 rounded-md">
         <div
           style={{ width: `${progressPercentage}%` }}
-          className={`pb-2 h-full ${
+          className={`pb-2 h-full  ${
             progressPercentage < 50 ? "bg-red-600" : "bg-green-600"
           }`}
         ></div>
@@ -41,12 +41,12 @@ function Modal({ handleClick, setShowModal, closeModal }) {
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
-        <div className="relative w-auto my-6 mx-auto max-w-4xl">
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none  xs:mx-3  md:mx-10 ">
+        <div className="relative w-auto my-6 mx-auto max-w-4xl ">
           <div className="flex flex-row bg-white rounded-lg">
-            <div className="w-5/12 p-7 flex flex-col justify-items-center text-center">
+            <div className="md:w-5/12 p-7 flex flex-col justify-items-center text-center md:visible xs:invisible xs:w-0 ">
               <img
-                className="hover:scale-105 ease-in-out duration-300 w-10/12 mx-auto"
+                className="hover:scale-105 ease-in-out duration-300 w-10/12 mx-auto "
                 src={togglePokemon.img}
               />
 
@@ -73,8 +73,8 @@ function Modal({ handleClick, setShowModal, closeModal }) {
               </div>
             </div>
 
-            <div className="flex flex-row flex-wrap w-7/12  p-7">
-              <h1 className="text-3xl font-bold w-10/12 my-auto">
+            <div className="flex flex-row flex-wrap md:w-7/12  p-7 xs:w-12/12 ">
+              <h1 className="text-3xl font-bold w-10/12  sm:w-12/12 my-auto">
                 Estadisticas
               </h1>
 
