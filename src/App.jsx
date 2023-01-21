@@ -13,7 +13,6 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState();
-  const [searching, setSearching] = useState(false);
   const [newFiltro, setNewFiltro] = useState(false);
   
 
@@ -35,9 +34,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (!searching) {
       fetchPokemons();
-    }
   }, [page]);
   
   const onSearch = async (pokemon) => {
@@ -64,7 +61,6 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
-      setPage(0)
       setPokeData2([])
       setPokeData([])
       setNewFiltro(true)
@@ -90,7 +86,6 @@ export default function App() {
     
     if(pokemon !== null){
       setLoading(true);
-      setPage(0)
       setPokeData([])
       setPokeData2([])
       setNewFiltro(true)

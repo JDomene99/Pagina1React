@@ -7,7 +7,7 @@ export default function SearchFilters({ onSearch }) {
     const [selectedName, setselectedName] = useState('');
 
     function findPokemon(e){
-        setselectedName(e.target.value === '' ? null : e.target.value)
+        setselectedName(e.target.value === '' ? null : (e.target.value).toLowerCase())
     }
   
     const handleSubmit = async (e) =>{
@@ -17,7 +17,7 @@ export default function SearchFilters({ onSearch }) {
     }
 
   return (
-    <form className='xs:w-12/12 sm:w-11/12 md:w-5/12 lg:w-4/12 2xl:w-5/12  xs:mx-auto sm:mb-6 sm:mx-auto md:ml-0'>
+    <form className='xs:w-12/12 sm:w-11/12 md:w-5/12 lg:w-4/12 2xl:w-5/12 xs:mb-4 xs:mx-auto sm:mb-6 sm:mx-auto md:ml-0'>
       <TextField  
       className='sm:w-10/12 text-white'
       label="Pokemon Name" 

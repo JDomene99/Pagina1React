@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
-import { searchPokemon } from "../FetchApiPokemon/getPokemonByList";
+import Spinner  from "../Spinner/Spinner";
 
 export default function Card({ Allpokemon, loading, Allpokemon2 }) {
   const [showModal, setShowModal] = useState(false);
@@ -24,15 +24,17 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
 
   return (
     <>
-      {RecordsPokemon.map((poke,i) => {
+      {loading ? <Spinner/> :
+      RecordsPokemon.map((poke,i) => {
         return (
+          
           <div
             style={{ background: poke.type[0].color + " 0.5)" }}
             className={`lg:w-[30%] ${
                 i == 8
                 ? "md:w-[100%]"
                 : "md:w-[43%]"
-            } sm:w-[100%] xs:w-[100%] xs:mx-5 sm:mx-auto text-center flex flex-col flex-wrap justify-center rounded-2xl`}
+            } sm:w-[100%] xs:w-[100%] 2xl:w-[32%] xs:mx-5 sm:mx-auto text-center flex flex-col flex-wrap justify-center rounded-2xl`}
             key={poke.id}
           >
             
@@ -44,7 +46,7 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
 
             <h1 className="text-3xl">#{poke.id}</h1>
             <h1 className="text-3xl font-bold mb-4">
-              {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+              {poke.name}
             </h1>
 
             <div className="flex flex-row flex-wrap justify-center w-12/12 mx-auto pb-3">
@@ -52,9 +54,10 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
                 return (
                   <div
                     key={idx}
-                    className="rounded p-1 text-white font-bold mx-5"
+                    className="rounded p-1 text-white font-bold mx-5 flex flex-row"
                     style={{ backgroundColor: poke.type[idx].color + " 1)" }}
                   >
+                    <img  className='m-auto w-4/12 mr-2' src={new URL(`/src/assets/${type.name}.svg`,import.meta.url).href} alt="" /> 
                     {type.name}
                   </div>
                 );

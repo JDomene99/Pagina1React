@@ -30,11 +30,13 @@ function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon
         if(currentPage !== 1) 
             setCurrentPage(currentPage - 1)
     }
-    
-    
-
+   
+   
   return (
-    <section className="flex flex-row flex-wrap sm:px-5  lg:px-28 justify-between gap-5 pt-24 bg-[#a2d9ff]" >
+
+    <section className={`flex ${
+      !loading ? " flex-row flex-wrap sm:px-5  lg:px-28 justify-between gap-5 pt-24 bg-[#a2d9ff]" : "flex flex-col bg-[#a2d9ff] pt-24"
+    }`} >
 
       <Card 
         Allpokemon={Allpokemon}

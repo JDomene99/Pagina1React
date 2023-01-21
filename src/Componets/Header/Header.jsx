@@ -6,12 +6,15 @@ export default function Header() {
   const [pokemon, setPokemon] = useState([]);
   const [imgPoke, setImg] = useState("");
   const [type, setType] = useState([]);
+  const [name, setname] = useState([]);
+
 
   const getPokemon = async () => {
     const pokemonHeader = await searchRandomPokemon();
     setPokemon(pokemonHeader);
     setImg(pokemonHeader.img);
     setType(pokemonHeader.type);
+    setname((pokemonHeader.name))
   };
 
   useEffect(() => {
@@ -25,16 +28,17 @@ export default function Header() {
         <div className="flex flex-col justify-center align-middle xs:w-12/12 sm:w-6/6 lg:w-3/6 sm:mx-auto text-center">
           <h3 className="text-3xl pb-1">#{pokemon.id}</h3>
 
-          <h1 className="text-6xl pb-3">{pokemon.name}</h1>
+          <h1 className="text-6xl pb-3 font-bold">{pokemon.name}</h1>
 
-          <div className="flex flex-row flex-wrap justify-center w-6/12 mx-auto pt-5">
+          <div className="flex flex-row flex-wrap justify-center w-12/12 mx-auto pt-5">
             {type.map((poke, id) => {
               return (
                 <div
                   key={id}
-                  className="rounded p-1 font-bold mx-5"
+                  className="rounded p-1 font-bold mx-5 flex flex-row"
                   style={{ backgroundColor: poke.color + " 1)" }}
                 >
+                  <img  className='m-auto w-4/12 mr-2' src={new URL(`/src/assets/${poke.name}.svg`,import.meta.url).href} alt="" /> 
                   {poke.name}
                 </div>
               );

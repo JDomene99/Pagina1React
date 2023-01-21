@@ -77,7 +77,7 @@ function ObjPokemon(data){
     
     const newPoke = {
         id: data.id,
-        name : data.name,
+        name : (data.name).charAt(0).toUpperCase() + data.name.slice(1),
         height : data.height,
         weight : data.weight,
         img : data.sprites.other.home.front_default,

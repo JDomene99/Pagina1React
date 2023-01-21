@@ -49,7 +49,7 @@ function Modal({ handleClick, setShowModal, closeModal }) {
                 className="hover:scale-105 ease-in-out duration-300 w-10/12 mx-auto "
                 src={togglePokemon.img}
               />
-
+              
               <h1 className="text-3xl">#{togglePokemon.id}</h1>
               <h1 className="text-3xl font-bold">{togglePokemon.name}</h1>
 
