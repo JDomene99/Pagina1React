@@ -64,7 +64,7 @@ export default function Card({ Allpokemon, loading, Allpokemon2 }) {
               })}
             </div>
 
-            <div className="font-bold">
+            <div className="font-bold flex flex-row flex-wrap justify-between w-5/12 mx-auto pb-3">
               <h2>{poke.weight / 10} kg</h2>
               <h2>{poke.height / 10} m</h2>
             </div>
