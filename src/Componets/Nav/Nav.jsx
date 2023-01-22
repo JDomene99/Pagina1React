@@ -5,7 +5,7 @@ import Podedex from "./podedex.png";
 
 function Nav() {
   return (
-    <nav className='flex flex-row flex-wrap justify-between py-4 align-middle sm:mx-10 md:mx-20 lg:mx-28'>
+    <nav className='flex flex-row flex-wrap justify-between py-4 align-middle xs:px-5 sm:mx-10 md:mx-20 lg:mx-28'>
         
         <div className='xs:w-2/12 sm:w-2/12 md:w-2/12 lg:w-1/12'>
             <img 
