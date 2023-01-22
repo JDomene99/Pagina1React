@@ -28,10 +28,10 @@ function Modal({ handleClick, setShowModal, closeModal }) {
 
   const ProgressBar = ({ progressPercentage }) => {
     return (
-      <div className="h-1 w-11/12 max-w-[250px] bg-gray-300 my-auto pb-2 rounded-md">
+      <div className="h-1 w-11/12 overflow-hidden bg-gray-300 my-auto pb-2 rounded-md">
         <div
           style={{ width: `${progressPercentage}%` }}
-          className={`pb-2 h-full  ${
+          className={`pb-2 h-full overflow-hidden   ${
             progressPercentage < 50 ? "bg-red-600" : "bg-green-600"
           }`}
         ></div>
