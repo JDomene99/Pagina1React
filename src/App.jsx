@@ -64,6 +64,7 @@ export default function App() {
       setPokeData2([])
       setPokeData([])
       setNewFiltro(true)
+      setCurrentPage(1)
       const data = await getPokemonByType(pokemon);
       if (data) {
         const promises = data.map(async (poke) => {
@@ -112,6 +113,25 @@ export default function App() {
       setPage(0)
     }
   }
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonPerPage] = useState(9);
+
+   // Get current pokemon
+   const indexOfLastRecord = currentPage * pokemonPerPage;
+   const indexOfFirstRecord = indexOfLastRecord - pokemonPerPage;
+   const currentRecord = pokeData2.slice(indexOfFirstRecord, indexOfLastRecord);
+  
+   const nPages = Math.ceil(pokeData2.length / pokemonPerPage)
+  
+   const nextPage = () => {
+    if(currentPage !== nPages) 
+        setCurrentPage(currentPage + 1)
+    }
+    const prevPage = () => {
+        if(currentPage !== 1) 
+            setCurrentPage(currentPage - 1)
+    }
  
   return (
     <>
@@ -129,7 +149,11 @@ export default function App() {
               setPage={setPage}
               total={total}
               setNewFiltro={newFiltro}
-              Allpokemon2={pokeData2}        
+              Allpokemon2={currentRecord}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              nPages = { nPages }
+              currentPage = { currentPage }         
       />
       <Footer/>
     </>

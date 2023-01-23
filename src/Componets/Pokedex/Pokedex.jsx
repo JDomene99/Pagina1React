@@ -8,30 +8,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './style.css'
 
         
-function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon2}) { 
-  
- 
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonPerPage] = useState(9);
-
-   // Get current pokemon
-   const indexOfLastRecord = currentPage * pokemonPerPage;
-   const indexOfFirstRecord = indexOfLastRecord - pokemonPerPage;
-   const currentRecord = Allpokemon2.slice(indexOfFirstRecord, indexOfLastRecord);
-  
-   const nPages = Math.ceil(Allpokemon2.length / pokemonPerPage)
-  
-   const nextPage = () => {
-    if(currentPage !== nPages) 
-        setCurrentPage(currentPage + 1)
-    }
-    const prevPage = () => {
-        if(currentPage !== 1) 
-            setCurrentPage(currentPage - 1)
-    }
-   
-   
+function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon2,nextPage,prevPage,nPages,currentPage}) { 
+    
   return (
 
     <section className={`flex ${
@@ -41,7 +19,7 @@ function Pokedex({ Allpokemon, setPage, total, loading, setNewFiltro, Allpokemon
       <Card 
         Allpokemon={Allpokemon}
         loading={loading}
-        Allpokemon2={currentRecord}
+        Allpokemon2={Allpokemon2}
       />
       <div className="w-12/12 mx-auto my-5">
       {
