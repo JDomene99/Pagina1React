@@ -90,6 +90,7 @@ export default function App() {
       setPokeData([])
       setPokeData2([])
       setNewFiltro(true)
+      setCurrentPage(1)
       const data = await getPokemonByRegion(pokemon);
       if (data) {
         const promises = data.map(async (poke) => {
